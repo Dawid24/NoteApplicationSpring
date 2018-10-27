@@ -1,11 +1,18 @@
 package paciorek.dawid.pl.NoteApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
 @Table(name = "notes")
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public class Note {
 
     @Id
@@ -17,11 +24,13 @@ public class Note {
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creatAt;
+    @CreatedDate
+    private Date createdAt;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updateAt;
+    @LastModifiedDate
+    private Date updatedAt;
 
     @NotBlank
     private String title;
@@ -46,19 +55,19 @@ public class Note {
         this.content = content;
     }
 
-    public Date getCreatAt() {
-        return creatAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatAt(Date creatAt) {
-        this.creatAt = creatAt;
+    public void setCreatedAt(Date creatAt) {
+        this.createdAt = creatAt;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Date updateAt) {
+        this.updatedAt = updateAt;
     }
 }

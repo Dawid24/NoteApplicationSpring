@@ -11,7 +11,8 @@ import paciorek.dawid.pl.NoteApplication.repository.NoteRepository;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class NoteController {
 
     @Autowired

@@ -6,5 +6,5 @@ import paciorek.dawid.pl.NoteApplication.model.Note;
 
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
-    
+
 }
